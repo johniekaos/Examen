@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ExamenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PEDIDOS_DETALLE_W">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_PEDIDO" Type="int" />
+          <Property Name="SKU" Type="varchar" MaxLength="150" />
+          <Property Name="AMOUT" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PRICE" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="PEDIDOS_W">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TOTAL" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DATE_SALE" Type="date" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="PRODUCTO_W">
+          <Key>
+            <PropertyRef Name="SKU" />
+          </Key>
+          <Property Name="SKU" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="200" />
+          <Property Name="EXISTENCIA" Type="int" />
+          <Property Name="PRICE" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ACTIVO" Type="bit" />
+        </EntityType>
+        <EntityType Name="USUARIOS_W">
+          <Key>
+            <PropertyRef Name="USERNAME" />
+          </Key>
+          <Property Name="USERNAME" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="200" />
+          <Property Name="ROLE" Type="varchar" MaxLength="200" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="200" />
+          <Property Name="APELLIDOS" Type="varchar" MaxLength="200" />
+          <Property Name="ACTIVO" Type="bit" />
+        </EntityType>
+        <Association Name="FK__PEDIDOS_D__ID_PE__5070F446">
+          <End Role="PEDIDOS_W" Type="Self.PEDIDOS_W" Multiplicity="0..1" />
+          <End Role="PEDIDOS_DETALLE_W" Type="Self.PEDIDOS_DETALLE_W" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEDIDOS_W">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_DETALLE_W">
+              <PropertyRef Name="ID_PEDIDO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PEDIDOS_DET__SKU__5165187F">
+          <End Role="PRODUCTO_W" Type="Self.PRODUCTO_W" Multiplicity="0..1" />
+          <End Role="PEDIDOS_DETALLE_W" Type="Self.PEDIDOS_DETALLE_W" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO_W">
+              <PropertyRef Name="SKU" />
+            </Principal>
+            <Dependent Role="PEDIDOS_DETALLE_W">
+              <PropertyRef Name="SKU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PEDIDOS_W__USERN__4D94879B">
+          <End Role="USUARIOS_W" Type="Self.USUARIOS_W" Multiplicity="0..1" />
+          <End Role="PEDIDOS_W" Type="Self.PEDIDOS_W" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS_W">
+              <PropertyRef Name="USERNAME" />
+            </Principal>
+            <Dependent Role="PEDIDOS_W">
+              <PropertyRef Name="USERNAME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExamenModelStoreContainer">
+          <EntitySet Name="PEDIDOS_DETALLE_W" EntityType="Self.PEDIDOS_DETALLE_W" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PEDIDOS_W" EntityType="Self.PEDIDOS_W" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTO_W" EntityType="Self.PRODUCTO_W" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIOS_W" EntityType="Self.USUARIOS_W" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__PEDIDOS_D__ID_PE__5070F446" Association="Self.FK__PEDIDOS_D__ID_PE__5070F446">
+            <End Role="PEDIDOS_W" EntitySet="PEDIDOS_W" />
+            <End Role="PEDIDOS_DETALLE_W" EntitySet="PEDIDOS_DETALLE_W" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PEDIDOS_DET__SKU__5165187F" Association="Self.FK__PEDIDOS_DET__SKU__5165187F">
+            <End Role="PRODUCTO_W" EntitySet="PRODUCTO_W" />
+            <End Role="PEDIDOS_DETALLE_W" EntitySet="PEDIDOS_DETALLE_W" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PEDIDOS_W__USERN__4D94879B" Association="Self.FK__PEDIDOS_W__USERN__4D94879B">
+            <End Role="USUARIOS_W" EntitySet="USUARIOS_W" />
+            <End Role="PEDIDOS_W" EntitySet="PEDIDOS_W" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ExamenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PEDIDOS_DETALLE_W">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_PEDIDO" Type="Int32" />
+          <Property Name="SKU" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="AMOUT" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PRICE" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="PEDIDOS_W" Relationship="Self.FK__PEDIDOS_D__ID_PE__5070F446" FromRole="PEDIDOS_DETALLE_W" ToRole="PEDIDOS_W" />
+          <NavigationProperty Name="PRODUCTO_W" Relationship="Self.FK__PEDIDOS_DET__SKU__5165187F" FromRole="PEDIDOS_DETALLE_W" ToRole="PRODUCTO_W" />
+        </EntityType>
+        <EntityType Name="PEDIDOS_W">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TOTAL" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DATE_SALE" Type="DateTime" Precision="0" />
+          <Property Name="USERNAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PEDIDOS_DETALLE_W" Relationship="Self.FK__PEDIDOS_D__ID_PE__5070F446" FromRole="PEDIDOS_W" ToRole="PEDIDOS_DETALLE_W" />
+          <NavigationProperty Name="USUARIOS_W" Relationship="Self.FK__PEDIDOS_W__USERN__4D94879B" FromRole="PEDIDOS_W" ToRole="USUARIOS_W" />
+        </EntityType>
+        <EntityType Name="PRODUCTO_W">
+          <Key>
+            <PropertyRef Name="SKU" />
+          </Key>
+          <Property Name="SKU" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EXISTENCIA" Type="Int32" />
+          <Property Name="PRICE" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ACTIVO" Type="Boolean" />
+          <NavigationProperty Name="PEDIDOS_DETALLE_W" Relationship="Self.FK__PEDIDOS_DET__SKU__5165187F" FromRole="PRODUCTO_W" ToRole="PEDIDOS_DETALLE_W" />
+        </EntityType>
+        <EntityType Name="USUARIOS_W">
+          <Key>
+            <PropertyRef Name="USERNAME" />
+          </Key>
+          <Property Name="USERNAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDOS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVO" Type="Boolean" />
+          <NavigationProperty Name="PEDIDOS_W" Relationship="Self.FK__PEDIDOS_W__USERN__4D94879B" FromRole="USUARIOS_W" ToRole="PEDIDOS_W" />
+        </EntityType>
+        <Association Name="FK__PEDIDOS_D__ID_PE__5070F446">
+          <End Role="PEDIDOS_W" Type="Self.PEDIDOS_W" Multiplicity="0..1" />
+          <End Role="PEDIDOS_DETALLE_W" Type="Self.PEDIDOS_DETALLE_W" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEDIDOS_W">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PEDIDOS_DETALLE_W">
+              <PropertyRef Name="ID_PEDIDO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PEDIDOS_DET__SKU__5165187F">
+          <End Role="PRODUCTO_W" Type="Self.PRODUCTO_W" Multiplicity="0..1" />
+          <End Role="PEDIDOS_DETALLE_W" Type="Self.PEDIDOS_DETALLE_W" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO_W">
+              <PropertyRef Name="SKU" />
+            </Principal>
+            <Dependent Role="PEDIDOS_DETALLE_W">
+              <PropertyRef Name="SKU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PEDIDOS_W__USERN__4D94879B">
+          <End Role="USUARIOS_W" Type="Self.USUARIOS_W" Multiplicity="0..1" />
+          <End Role="PEDIDOS_W" Type="Self.PEDIDOS_W" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS_W">
+              <PropertyRef Name="USERNAME" />
+            </Principal>
+            <Dependent Role="PEDIDOS_W">
+              <PropertyRef Name="USERNAME" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExamenDatabase" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PEDIDOS_DETALLE_W" EntityType="Self.PEDIDOS_DETALLE_W" />
+          <EntitySet Name="PEDIDOS_W" EntityType="Self.PEDIDOS_W" />
+          <EntitySet Name="PRODUCTO_W" EntityType="Self.PRODUCTO_W" />
+          <EntitySet Name="USUARIOS_W" EntityType="Self.USUARIOS_W" />
+          <AssociationSet Name="FK__PEDIDOS_D__ID_PE__5070F446" Association="Self.FK__PEDIDOS_D__ID_PE__5070F446">
+            <End Role="PEDIDOS_W" EntitySet="PEDIDOS_W" />
+            <End Role="PEDIDOS_DETALLE_W" EntitySet="PEDIDOS_DETALLE_W" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PEDIDOS_DET__SKU__5165187F" Association="Self.FK__PEDIDOS_DET__SKU__5165187F">
+            <End Role="PRODUCTO_W" EntitySet="PRODUCTO_W" />
+            <End Role="PEDIDOS_DETALLE_W" EntitySet="PEDIDOS_DETALLE_W" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PEDIDOS_W__USERN__4D94879B" Association="Self.FK__PEDIDOS_W__USERN__4D94879B">
+            <End Role="USUARIOS_W" EntitySet="USUARIOS_W" />
+            <End Role="PEDIDOS_W" EntitySet="PEDIDOS_W" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ExamenModelStoreContainer" CdmEntityContainer="ExamenDatabase">
+          <EntitySetMapping Name="PEDIDOS_DETALLE_W">
+            <EntityTypeMapping TypeName="ExamenModel.PEDIDOS_DETALLE_W">
+              <MappingFragment StoreEntitySet="PEDIDOS_DETALLE_W">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_PEDIDO" ColumnName="ID_PEDIDO" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="AMOUT" ColumnName="AMOUT" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PEDIDOS_W">
+            <EntityTypeMapping TypeName="ExamenModel.PEDIDOS_W">
+              <MappingFragment StoreEntitySet="PEDIDOS_W">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+                <ScalarProperty Name="DATE_SALE" ColumnName="DATE_SALE" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTO_W">
+            <EntityTypeMapping TypeName="ExamenModel.PRODUCTO_W">
+              <MappingFragment StoreEntitySet="PRODUCTO_W">
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="EXISTENCIA" ColumnName="EXISTENCIA" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOS_W">
+            <EntityTypeMapping TypeName="ExamenModel.USUARIOS_W">
+              <MappingFragment StoreEntitySet="USUARIOS_W">
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

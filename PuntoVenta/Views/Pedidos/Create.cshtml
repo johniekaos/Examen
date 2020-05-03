@@ -1,0 +1,95 @@
+﻿@model PuntoVenta.Models.Web.DetallesPedido
+
+@{
+    ViewBag.Title = "Agregar";
+}
+
+<h2>Nuevo Pedido</h2>
+<div class="row" style="min-height:40px;">
+    <div class="col-md-6">
+       
+    </div>
+    <div class="col-md-6 text-right">
+        <button id="btnGuardar" class="btn btn-success">Guardar</button>
+    </div>
+</div>
+
+<div class="form-horizontal">
+    <hr />
+    <div class="row col-md-12">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.PRODUCTO_W.SKU, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.PRODUCTO_W.SKU, (SelectList)ViewBag.SKU, "--- Selecciona Producto ---", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PRODUCTO_W.SKU, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            @Html.Label("Precio", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PRICE, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+
+                @Html.ValidationMessageFor(model => model.PRICE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row col-md-12">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(model => model.AMOUT, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AMOUT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AMOUT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            @Html.Label("Total", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("txtCosto", "0", new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.PRODUCTO_W.SKU, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-12 text-center">
+        <div class="form-group">
+            <div class="col-md-10">
+                <button id="btnAgregar" class="btn btn-primary">Agregar</button>
+                @Html.ActionLink("Cancelar", "Index","",new {@class= "btn btn-danger" })
+            </div>
+            <div class="col-md-2 h3">
+                $<label class="h3" id="lblAcumulado"> 0.0</label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dvTablePedidos row">
+    <table class="table" id="tblPedidos">
+        <tr>
+            <th style="width:10%;">
+                SKU
+            </th>
+            <th style="width:45%;">
+                NOMBRE
+            </th>
+            <th style="width:15%;">
+                PRECIO UNITARIO
+            </th>
+            <th style="width:10%;">
+                CANTIDAD
+            </th>
+            <th style="width:10%;">
+                TOTAL
+            </th>
+            <th style="width:10%;">
+                ACCION
+            </th>
+        </tr>
+
+    </table>
+</div>
+
+

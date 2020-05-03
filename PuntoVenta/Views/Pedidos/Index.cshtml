@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PuntoVenta.Models.Web.Pedido>
+
+@{
+    ViewBag.Title = "Pedidos";
+}
+
+<h2>Pedidos</h2>
+
+<p>
+    @Html.ActionLink("Agregar Pedido", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TOTAL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATE_SALE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USERNAME)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TOTAL)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DATE_SALE)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.USERNAME)
+    </td>
+    <td>
+        @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |*@
+        @Html.ActionLink("Ver Detalle", "Details", new { id = item.ID }) 
+        @*@Html.ActionLink("Delete", "Delete", new { id=item.ID })*@
+    </td>
+</tr>
+}
+
+</table>

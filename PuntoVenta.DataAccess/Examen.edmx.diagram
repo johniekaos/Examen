@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f6b1df3e42c0427d8fb92edd5828302a" Name="Diagram1">
+        <EntityTypeShape EntityType="ExamenModel.PEDIDOS_DETALLE_W" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExamenModel.PEDIDOS_W" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExamenModel.PRODUCTO_W" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ExamenModel.USUARIOS_W" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="ExamenModel.FK__PEDIDOS_D__ID_PE__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="ExamenModel.FK__PEDIDOS_DET__SKU__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="ExamenModel.FK__PEDIDOS_W__USERN__4D94879B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

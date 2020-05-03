@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PuntoVenta.Models.Web.DetallesPedido>
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalle de Pedido: <strong>@ViewBag.ID_PEDIDO</strong></h2>
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.SKU)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRODUCTO_W.NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AMOUT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRICE)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.SKU)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PRODUCTO_W.NOMBRE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AMOUT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PRICE)
+            </td>
+
+        </tr>
+    }
+
+</table>
+<div class="row text-right">
+    <div><h3>$@ViewBag.TOTAL</h3></div>
+</div>
